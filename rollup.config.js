@@ -30,14 +30,17 @@ export default {
     copy({
       targets: [
         {
-          src: "src/variables.scss",
+          src: "src/css",
           dest: "build",
-          rename: "variables.scss"
         },
         {
-          src: "src/typography.scss",
+          src: "src/fonts",
           dest: "build",
-          rename: "typography.scss"
+        },
+        {
+          src: "src/lib/next.js",
+          dest: "build",
+          rename: "next.js"
         }
       ]
     })
