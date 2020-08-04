@@ -1,3 +1,3 @@
-import TestComponent from "./TestComponent/TestComponent";
+import NextContainer from "./NextContainer/NextContainer";
 
-export { TestComponent };
+export { NextContainer };
