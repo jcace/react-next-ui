@@ -1,5 +1,5 @@
 {
-  "name": "react-component-library",
+  "name": "react-next-ui",
   "version": "1.0.0",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -7,30 +7,29 @@
     "build"
   ],
   "types": "build/index.d.ts",
-  "description": "A skeleton to create your own React component library using Rollup, TypeScript, Sass and Storybook",
+  "description": "NeXt UI Toolkit React Distribution",
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "storybook:export": "build-storybook",
-    "generate": "node ./util/create-component",
     "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HarveyD/react-component-library.git"
+    "url": ""
   },
   "keywords": [
     "React",
-    "Component",
+    "NeXt",
     "Library",
-    "Rollup",
-    "Typescript",
-    "Sass",
-    "Storybook"
+    "topology",
+    "SDB",
+    "network",
+    "diagram"
   ],
-  "author": "Harvey Delaney",
+  "author": "Jason Cihelka",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/HarveyD/react-component-library/issues"
@@ -45,6 +44,7 @@
     "@babel/core": "^7.10.3",
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
+    "@rollup/plugin-typescript": "^5.0.2",
     "@storybook/react": "^5.3.19",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.2",
@@ -63,9 +63,8 @@
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^3.1.2",
-    "rollup-plugin-typescript2": "^0.27.0",
     "sass-loader": "^8.0.0",
     "ts-jest": "^24.2.0",
-    "typescript": "^3.7.2"
+    "typescript": "^3.9.7"
   }
 }
