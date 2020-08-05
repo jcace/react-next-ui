@@ -23,8 +23,10 @@ const NextContainer: React.FC<NextContainerProps> = ({
     if (!nxAppLoaded || !eventHandlers) return;
 
     Object.entries(eventHandlers).forEach(([event, eventHandler]) => {
+      // @ts-ignore
       nxApp!.off(event); // We need to remove all event handlers first, because ".on" adds a NEW one, it doesn't REPLACE an existing one.
-      nxApp!.on(event, eventHandler);
+      // @ts-ignore
+      nxApp!.on(event, eventHandler)!;
     });
   };
 
@@ -36,7 +38,8 @@ const NextContainer: React.FC<NextContainerProps> = ({
     if (!nxAppLoaded) {
       return;
     }
-    nxApp!.data(topologyData);
+    // @ts-ignore
+    nxApp!.data(topologyData)!;
   }, [nxLoaded, nxApp, topologyData]);
 
   // Everytime a new render happens, make sure we update event handlers otherwise NEXT won't know that their state changed

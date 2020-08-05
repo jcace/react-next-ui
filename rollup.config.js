@@ -1,25 +1,20 @@
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import typescript from '@rollup/plugin-typescript';
+import typescript from "@rollup/plugin-typescript";
 import postcss from "rollup-plugin-postcss";
 import copy from "rollup-plugin-copy";
 
-const packageJson = require("./package.json");
+// const packageJson = require("./package.json");
 
 export default {
   input: "src/index.ts",
   output: [
     {
-      file: packageJson.main,
+      dir: "build",
       format: "cjs",
-      sourcemap: true
+      sourcemap: true,
     },
-    {
-      file: packageJson.module,
-      format: "esm",
-      sourcemap: true
-    }
   ],
   plugins: [
     peerDepsExternal(),
@@ -40,9 +35,9 @@ export default {
         {
           src: "src/lib/next.js",
           dest: "build",
-          rename: "next.js"
-        }
-      ]
-    })
-  ]
+          rename: "next.js",
+        },
+      ],
+    }),
+  ],
 };
