@@ -4,16 +4,8 @@ import { NextContainerProps, TopologyConfig } from "./NextContainer.types";
 
 import "../css/next.min.css";
 
-const defaultTopologyConfig: TopologyConfig = {
-  adaptive: true,
-  showIcon: true,
-  identityKey: "name",
-  autoLayout: true,
-  showNavigation: true,
-};
-
 const NextContainer: React.FC<NextContainerProps> = ({
-  topologyConfig = defaultTopologyConfig,
+  topologyConfig,
   eventHandlers,
   topologyData,
 }) => {
