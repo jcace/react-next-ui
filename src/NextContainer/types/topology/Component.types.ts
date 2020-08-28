@@ -1,10 +1,10 @@
-import { Coordinates } from "./Common.types";
+import { Coordinates } from "../Common.types";
 
-export interface NxComponent {
+export interface TopologyComponent {
   // Properties
   translateX: (value?: number) => void | number;
   translateY: (value?: number) => void | number;
-  scale: (value?: number) => void : number;
+  scale: (value?: number) => void | number;
   translate: (value?: Coordinates) => void | Coordinates;
   visible: (value?: boolean) => void | boolean;
   class: (value?: string) => boolean | string;
@@ -25,7 +25,7 @@ export interface NxComponent {
     context?: any
   ) => void;
   setTransition: (callback?: any, context?: any, duration?: number) => void;
-  append: (parent?: NxComponent) => void;
+  append: (parent?: TopologyComponent) => void;
   remove: () => void;
   getBound: any; // todo: returns ClientRect
   hide: () => void;

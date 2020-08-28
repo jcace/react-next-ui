@@ -26,10 +26,10 @@ export const Basic = () => (
 export const WithEventHandlers = () => {
   const sampleEvtHandlers: EventHandlers = {
     clickLink: (sender, event) => {
-      console.log(event.visible());
+      console.log(event.sourceNode().id());
     },
     selectNode: (sender, event) =>
-      console.log(event.enable())  
+      console.log(event.vector().angle())  
     // alert(`You clicked a node with id ${event.id()}`),
   };
 

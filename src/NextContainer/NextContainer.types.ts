@@ -1,6 +1,11 @@
-import { NxEvent } from "./Common.types";
-import { NxNode } from "./Node.types";
-import { NxLink } from "./Link.types";
+import { TopologyEvent } from "./types/Common.types";
+import { TopologyNode } from "./types/topology/Node.types";
+import { TopologyLink } from "./types/topology/Link.types";
+
+
+// TODO: These types are split up in the actual NX Library,
+// They should be defined in topology, topologyconfig, nodemixin, stagemixin, etc.
+// Here they are just defined for the meantime.
 
 export interface NextContainerProps {
   topologyConfig?: TopologyConfig;
@@ -44,43 +49,43 @@ export type TopologyConfig = Partial<{
 export interface EventHandlers extends StageEvents, NodeEvents, LinkEvents {}
 
 type StageEvents = Partial<{
-  clickStage: NxEvent<any>;
-  down: NxEvent<any>;
-  dragStage: NxEvent<any>;
-  dragStageStart: NxEvent<any>;
-  dragStageEnd: NxEvent<any>;
-  enter: NxEvent<any>;
-  esc: NxEvent<any>;
-  left: NxEvent<any>;
-  right: NxEvent<any>;
-  pressA: NxEvent<any>;
-  pressF: NxEvent<any>;
-  pressM: NxEvent<any>;
-  pressR: NxEvent<any>;
-  pressS: NxEvent<any>;
-  pressStage: NxEvent<any>;
-  space: NxEvent<any>;
-  up: NxEvent<any>;
-  zoomend: NxEvent<any>;
-  zooming: NxEvent<any>;
+  clickStage: TopologyEvent<any>;
+  down: TopologyEvent<any>;
+  dragStage: TopologyEvent<any>;
+  dragStageStart: TopologyEvent<any>;
+  dragStageEnd: TopologyEvent<any>;
+  enter: TopologyEvent<any>;
+  esc: TopologyEvent<any>;
+  left: TopologyEvent<any>;
+  right: TopologyEvent<any>;
+  pressA: TopologyEvent<any>;
+  pressF: TopologyEvent<any>;
+  pressM: TopologyEvent<any>;
+  pressR: TopologyEvent<any>;
+  pressS: TopologyEvent<any>;
+  pressStage: TopologyEvent<any>;
+  space: TopologyEvent<any>;
+  up: TopologyEvent<any>;
+  zoomend: TopologyEvent<any>;
+  zooming: TopologyEvent<any>;
 }>;
 
 type NodeEvents = Partial<{
-  pressNode: NxEvent<NxNode>;
-  clickNode: NxEvent<NxNode>;
-  enterNode: NxEvent<NxNode>;
-  leaveNode: NxEvent<NxNode>;
-  dragNodeStart: NxEvent<NxNode>;
-  dragNode: NxEvent<NxNode>;
-  dragNodeEnd: NxEvent<NxNode>;
-  selectNode: NxEvent<NxNode>;
+  pressNode: TopologyEvent<TopologyNode>;
+  clickNode: TopologyEvent<TopologyNode>;
+  enterNode: TopologyEvent<TopologyNode>;
+  leaveNode: TopologyEvent<TopologyNode>;
+  dragNodeStart: TopologyEvent<TopologyNode>;
+  dragNode: TopologyEvent<TopologyNode>;
+  dragNodeEnd: TopologyEvent<TopologyNode>;
+  selectNode: TopologyEvent<TopologyNode>;
 }>;
 
 type LinkEvents = Partial<{
-  pressLink: NxEvent<NxLink>;
-  clickLink: NxEvent<NxLink>;
-  enterLink: NxEvent<NxLink>;
-  leaveLink: NxEvent<NxLink>;
+  pressLink: TopologyEvent<TopologyLink>;
+  clickLink: TopologyEvent<TopologyLink>;
+  enterLink: TopologyEvent<TopologyLink>;
+  leaveLink: TopologyEvent<TopologyLink>;
 }>;
 
 
