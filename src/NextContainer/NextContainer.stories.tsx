@@ -16,15 +16,21 @@ const sampleTopology = {
 
 const sampleConfig: TopologyConfig = {
   autoLayout: true,
-  identityKey: "id"
+  identityKey: "id",
 };
 
-export const Basic = () => <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig}/>;
+export const Basic = () => (
+  <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
+);
 
 export const WithEventHandlers = () => {
   const sampleEvtHandlers: EventHandlers = {
+    clickLink: (sender, event) => {
+      console.log(event.visible());
+    },
     selectNode: (sender, event) =>
-      alert(`You clicked a node with id ${event.id()}`),
+      console.log(event.enable())  
+    // alert(`You clicked a node with id ${event.id()}`),
   };
 
   return (

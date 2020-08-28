@@ -1,5 +1,6 @@
 import { NxEvent } from "./Common.types";
 import { NxNode } from "./Node.types";
+import { NxLink } from "./Link.types";
 
 export interface NextContainerProps {
   topologyConfig?: TopologyConfig;
@@ -76,10 +77,10 @@ type NodeEvents = Partial<{
 }>;
 
 type LinkEvents = Partial<{
-  pressLink: NxEvent<any>;
-  clickLink: NxEvent<any>;
-  enterLink: NxEvent<any>;
-  leaveLink: NxEvent<any>;
+  pressLink: NxEvent<NxLink>;
+  clickLink: NxEvent<NxLink>;
+  enterLink: NxEvent<NxLink>;
+  leaveLink: NxEvent<NxLink>;
 }>;
 
 
