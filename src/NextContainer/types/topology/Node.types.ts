@@ -7,7 +7,7 @@ export interface TopologyAbstractNode extends TopologyComponent {
   position: (obj?: Coordinates) => Coordinates;
   absolutePosition: (obj?: Coordinates) => Coordinates;
   matrix: [];
-  vector: GeometryVector;
+  vector: () => GeometryVector;
   x: (x?: number) => number;
   y: (y?: number) => number;
   lockXAxle: () => boolean;

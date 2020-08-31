@@ -25,16 +25,16 @@
     "NeXt",
     "Library",
     "topology",
-    "SDB",
+    "SDN",
     "network",
     "diagram"
   ],
   "author": "Jason Cihelka",
-  "license": "MIT",
+  "license": "EPL-2.0",
   "bugs": {
-    "url": "https://github.com/HarveyD/react-component-library/issues"
+    "url": "https://github.com/jcace/react-next-ui/issues"
   },
-  "homepage": "https://github.com/HarveyD/react-component-library#readme",
+  "homepage": "https://github.com/jcace/react-next-ui",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0",
