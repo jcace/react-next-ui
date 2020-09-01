@@ -1,6 +1,6 @@
-import { TopologyEvent } from "./types/Common.types";
-import { TopologyNode } from "./types/topology/Node.types";
-import { TopologyLink } from "./types/topology/Link.types";
+import { TopologyEvent } from "../types/Common.types";
+import { TopologyNode } from "../types/topology/Node.types";
+import { TopologyLink } from "../types/topology/Link.types";
 
 
 // TODO: These types are split up in the actual NX Library,

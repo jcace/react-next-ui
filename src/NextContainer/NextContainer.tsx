@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import Script from "react-load-script";
 import { NextContainerProps, TopologyConfig } from "./NextContainer.types";
 
-import "../css/next.min.css";
-
 const NextContainer: React.FC<NextContainerProps> = ({
   topologyConfig,
   eventHandlers,
