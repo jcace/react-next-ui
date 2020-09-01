@@ -1,5 +1,6 @@
 import React from "react";
-import NextContainer from "./NextContainer";
+// import NextContainer from "./NextContainer";
+import useNextUi from "./useNextUi";
 import {
   EventHandlers,
   TopologyConfig,
@@ -23,23 +24,64 @@ const sampleConfig: TopologyConfig = {
   identityKey: "id",
 };
 
-export const Basic = () => (
-  <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
-);
+export const Basic = () => {
+  const { NextContainer, nxApp, nxReady } = useNextUi({
+    topologyConfig: sampleConfig,
+    topologyData: sampleTopology,
+  });
 
-export const WithEventHandlers = () => {
-  const sampleEvtHandlers: EventHandlers = {
-    clickLink: (sender, event) => {
-      alert(`You clicked a link with id ${event.id()}`)
-    },
-    selectNode: (sender, event) => alert(`You clicked a node with id ${event.id()}`),
-  };
+  if (nxReady) {
+    const tooltipPolicy = createTooltipPolicy(window.nx);
+    nxApp?.tooltipManager().tooltipPolicyClass(tooltipPolicy);
+  }
 
-  return (
-    <NextContainer
-      topologyData={sampleTopology}
-      topologyConfig={sampleConfig}
-      eventHandlers={sampleEvtHandlers}
-    />
-  );
+  return <div>{NextContainer}</div>;
 };
+
+const createTooltipPolicy = (nx) => {
+  const policyName = "ExtendedTooltipPolicy";
+  nx.define(policyName, nx.graphic.Topology.TooltipPolicy, {
+    properties: {
+      topology: {},
+      tooltipManager: {},
+    },
+    methods: {
+      // inherit methods and properties from base class (nx.graphic.Topology.TooltipPolicy)
+      init(args) {
+        // this.inherited(args);
+        this.sets(args);
+        this._tm = this.tooltipManager();
+      },
+      clickNode(node) {
+        // Overwrite click behavior: Do nothing.
+        // This prevents the popup from displaying in the Next container
+      },
+      clickLink(link) {
+        // Overwrite click behavior: Do nothing.
+        // This prevents the popup from displaying in the Next container
+      },
+    },
+  });
+  return policyName;
+};
+
+// export const Basic = () => (
+//   <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
+// );
+
+// export const WithEventHandlers = () => {
+//   const sampleEvtHandlers: EventHandlers = {
+//     clickLink: (sender, event) => {
+//       alert(`You clicked a link with id ${event.id()}`)
+//     },
+//     selectNode: (sender, event) => alert(`You clicked a node with id ${event.id()}`),
+//   };
+
+//   return (
+//     <NextContainer
+//       topologyData={sampleTopology}
+//       topologyConfig={sampleConfig}
+//       eventHandlers={sampleEvtHandlers}
+//     />
+//   );
+// };
