@@ -2,15 +2,26 @@ import { TopologyEvent } from "../types/Common.types";
 import { TopologyNode } from "../types/topology/Node.types";
 import { TopologyLink } from "../types/topology/Link.types";
 
-
 // TODO: These types are split up in the actual NX Library,
 // They should be defined in topology, topologyconfig, nodemixin, stagemixin, etc.
 // Here they are just defined for the meantime.
 
+export interface TopologyData {
+  nodes: Array<{
+    id: string | number;
+    [x: string]: any;
+  }>;
+  links: Array<{
+    source: string | number;
+    target: string | number;
+    [x: string]: any;
+  }>;
+}
+
 export interface NextContainerProps {
   topologyConfig?: TopologyConfig;
   eventHandlers?: Object;
-  topologyData?: Object;
+  topologyData?: TopologyData;
 }
 
 export type TopologyConfig = Partial<{
@@ -87,5 +98,3 @@ type LinkEvents = Partial<{
   enterLink: TopologyEvent<TopologyLink>;
   leaveLink: TopologyEvent<TopologyLink>;
 }>;
-
-

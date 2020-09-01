@@ -1,12 +1,16 @@
 import React from "react";
 import NextContainer from "./NextContainer";
-import { EventHandlers, TopologyConfig } from "./NextContainer.types";
+import {
+  EventHandlers,
+  TopologyConfig,
+  TopologyData,
+} from "./NextContainer.types";
 
 export default {
   title: "NextContainer",
 };
 
-const sampleTopology = {
+const sampleTopology: TopologyData = {
   nodes: [
     { name: "Router1", id: 1, type: "router" },
     { name: "Router2", id: 2, type: "router" },
@@ -26,11 +30,9 @@ export const Basic = () => (
 export const WithEventHandlers = () => {
   const sampleEvtHandlers: EventHandlers = {
     clickLink: (sender, event) => {
-      console.log(event.sourceNode().id());
+      alert(`You clicked a link with id ${event.id()}`)
     },
-    selectNode: (sender, event) =>
-      console.log(event.vector().angle())  
-    // alert(`You clicked a node with id ${event.id()}`),
+    selectNode: (sender, event) => alert(`You clicked a node with id ${event.id()}`),
   };
 
   return (

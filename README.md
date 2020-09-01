@@ -9,11 +9,21 @@ Based on ODL [NeXT UI Framework](https://github.com/opendaylight/next)
 
 ## Usage
 
-```TSX
-import React from "react";
-import NextLibrary, { TopologyConfig } from "react-next-ui";
+> Note: Make sure you import both react-next-ui and the css files, as seen below
 
-const sampleTopology = {
+```typescript
+import NextContainer, { TopologyConfig, TopologyData } from "react-next-ui";
+import "react-next-ui/build/css/next.min.css";
+```
+
+### Example
+
+```tsx
+import React from "react";
+import NextContainer, { TopologyConfig, TopologyData } from "react-next-ui";
+import "react-next-ui/build/css/next.min.css";
+
+const sampleTopology: TopologyData = {
   nodes: [
     { name: "Router1", id: 1, type: "router" },
     { name: "Router2", id: 2, type: "router" },
