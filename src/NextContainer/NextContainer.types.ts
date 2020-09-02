@@ -22,6 +22,7 @@ export interface NextContainerProps {
   topologyConfig?: TopologyConfig;
   eventHandlers?: Object;
   topologyData?: TopologyData;
+  callback?: (nxApp: any) => any;
 }
 
 export type TopologyConfig = Partial<{
@@ -57,7 +58,21 @@ export type TopologyConfig = Partial<{
   linkConfig: object;
 }>;
 
-export interface EventHandlers extends StageEvents, NodeEvents, LinkEvents {}
+export interface EventHandlers
+  extends StageEvents,
+    NodeEvents,
+    LinkEvents,
+    TopologyEvents {}
+
+type TopologyEvents = Partial<{
+  afterSetData: TopologyEvent<any>;
+  beforeSetData: TopologyEvent<any>;
+  fit: TopologyEvent<any>;
+  insertData: TopologyEvent<any>;
+  ready: TopologyEvent<any>;
+  resizeStage: TopologyEvent<any>;
+  topologyGenerated: TopologyEvent<any>;
+}>;
 
 type StageEvents = Partial<{
   clickStage: TopologyEvent<any>;

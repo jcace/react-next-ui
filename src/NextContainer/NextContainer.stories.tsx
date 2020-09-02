@@ -30,9 +30,10 @@ export const Basic = () => (
 export const WithEventHandlers = () => {
   const sampleEvtHandlers: EventHandlers = {
     clickLink: (sender, event) => {
-      alert(`You clicked a link with id ${event.id()}`)
+      alert(`You clicked a link with id ${event.id()}`);
     },
-    selectNode: (sender, event) => alert(`You clicked a node with id ${event.id()}`),
+    selectNode: (sender, event) =>
+      alert(`You clicked a node with id ${event.id()}`),
   };
 
   return (
@@ -40,6 +41,40 @@ export const WithEventHandlers = () => {
       topologyData={sampleTopology}
       topologyConfig={sampleConfig}
       eventHandlers={sampleEvtHandlers}
+    />
+  );
+};
+
+export const WithCustomFn = () => {
+  const afterLoad = (nxApp) => {
+    window.nx.define("testTooltipPolicy", nx.graphic.Topology.TooltipPolicy, {
+      properties: {
+        topology: {},
+        tooltipManager: {},
+      },
+      methods: {
+        init(args) {
+          this.sets(args);
+          this._tm = this.tooltipManager();
+        },
+        clickNode(node) {
+          // Overwrite click behavior: Do nothing.
+          // This prevents the popup from displaying in the Next container
+        },
+        clickLink(link) {
+          // Overwrite click behavior: Do nothing.
+          // This prevents the popup from displaying in the Next container
+        },
+      },
+    });
+    nxApp.tooltipManager().tooltipPolicyClass("testTooltipPolicy");
+  };
+
+  return (
+    <NextContainer
+      topologyData={sampleTopology}
+      topologyConfig={sampleConfig}
+      callback={afterLoad}
     />
   );
 };
