@@ -64,7 +64,7 @@ const App = () => {
   return (
   <div>
     <h1>NeXT UI Library Test</h1>
-    <NextLibrary topologyData={sampleTopology} topologyConfig={sampleConfig} />
+    <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
   </div>
   )
 };
@@ -107,7 +107,7 @@ const App = () => {
   return (
   <div>
     <h1>NeXT UI Library Test</h1>
-    <NextLibrary topologyData={sampleTopology} topologyConfig={sampleConfig} eventHandlers={sampleEvtHandlers}/>
+    <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} eventHandlers={sampleEvtHandlers}/>
   </div>
   )
 };
@@ -168,7 +168,7 @@ const App = () => {
   return (
   <div>
     <h1>NeXT UI Library Test</h1>
-    <NextLibrary topologyData={sampleTopology} topologyConfig={sampleConfig} callback={afterLoad}/>
+    <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} callback={afterLoad}/>
   </div>
   )
 };
