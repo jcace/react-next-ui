@@ -123,7 +123,7 @@ Once the Next component has finished rendering, it will call the `callback` prop
 
 ```tsx
 import React from "react";
-import NextContainer, { TopologyConfig, TopologyData } from "react-next-ui";
+import NextContainer, { TopologyConfig, TopologyData, TopologyNode, TopologyLink } from "react-next-ui";
 import "react-next-ui/build/css/next.min.css";
 
 
@@ -141,28 +141,31 @@ const App = () => {
     identityKey: "id",
   };
 
-  const afterLoad = (nxApp) => {
-    window.nx.define('testTooltipPolicy', nx.graphic.Topology.TooltipPolicy, {
+  const afterLoad = (nxApp: any) => {
+    // @ts-ignore
+    window.nx.define("testTooltipPolicy", nx.graphic.Topology.TooltipPolicy, {
       properties: {
         topology: {},
         tooltipManager: {},
       },
       methods: {
-        init(args) {
+        init(args: any) {
+          // @ts-ignore
           this.sets(args);
+          // @ts-ignore
           this._tm = this.tooltipManager();
         },
-        clickNode(node) {
+        clickNode(node: TopologyNode) {
           // Overwrite click behavior: Do nothing.
           // This prevents the popup from displaying in the Next container
         },
-        clickLink(link) {
+        clickLink(link: TopologyLink) {
           // Overwrite click behavior: Do nothing.
           // This prevents the popup from displaying in the Next container
         },
       },
     });
-    nxApp.tooltipManager().tooltipPolicyClass('testTooltipPolicy');
+    nxApp.tooltipManager().tooltipPolicyClass("testTooltipPolicy");
   };
 
   return (
