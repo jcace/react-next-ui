@@ -1,6 +1,7 @@
 import { TopologyEvent } from "../types/Common.types";
 import { TopologyNode } from "../types/topology/Node.types";
 import { TopologyLink } from "../types/topology/Link.types";
+import { CSSProperties } from "react";
 
 // TODO: These types are split up in the actual NX Library,
 // They should be defined in topology, topologyconfig, nodemixin, stagemixin, etc.
@@ -22,6 +23,7 @@ export interface NextContainerProps {
   topologyConfig?: TopologyConfig;
   eventHandlers?: Object;
   topologyData?: TopologyData;
+  style?: CSSProperties;
   callback?: (nxApp: any) => any;
 }
 

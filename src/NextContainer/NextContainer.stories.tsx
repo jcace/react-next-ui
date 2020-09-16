@@ -20,11 +20,16 @@ const sampleTopology: TopologyData = {
 
 const sampleConfig: TopologyConfig = {
   autoLayout: true,
+  adaptive: true,
   identityKey: "id",
 };
 
 export const Basic = () => (
-  <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
+  <NextContainer
+    topologyData={sampleTopology}
+    topologyConfig={sampleConfig}
+    style={{ height: "80vh", width: "60vw" }}
+  />
 );
 
 export const WithEventHandlers = () => {

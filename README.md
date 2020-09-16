@@ -35,6 +35,7 @@ In your JSX, render the component as follows:
 
 `callback`: Function to execute once Next container is finished loading/mounting. Called with one argument equal to the instance of `nx.graphic.Topology` that was instantiated
 
+`style`: CSS styles to be passed to the NeXT div (useful for specifying dimensions of the container)
 
 
 ## Examples
@@ -58,13 +59,14 @@ const App = () => {
 
   const sampleConfig: TopologyConfig = {
     autoLayout: true,
+    adaptive: true,
     identityKey: "id",
   };
 
   return (
   <div>
     <h1>NeXT UI Library Test</h1>
-    <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} />
+    <NextContainer topologyData={sampleTopology} topologyConfig={sampleConfig} style={{ width: "50vw", height: "50vh" }}/>
   </div>
   )
 };
@@ -93,6 +95,7 @@ const App = () => {
 
   const sampleConfig: TopologyConfig = {
     autoLayout: true,
+    adaptive: true,
     identityKey: "id",
   };
 
@@ -138,12 +141,13 @@ const App = () => {
 
   const sampleConfig: TopologyConfig = {
     autoLayout: true,
+    adaptive: true,
     identityKey: "id",
   };
 
   const afterLoad = (nxApp: any) => {
     // @ts-ignore
-    window.nx.define("testTooltipPolicy", nx.graphic.Topology.TooltipPolicy, {
+    window.nx.define("testTooltipPolicy", window.nx.graphic.Topology.TooltipPolicy, {
       properties: {
         topology: {},
         tooltipManager: {},

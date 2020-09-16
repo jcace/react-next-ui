@@ -7,6 +7,7 @@ const NextContainer: React.FC<NextContainerProps> = ({
   topologyConfig,
   eventHandlers,
   topologyData,
+  style,
   callback,
 }) => {
   const [nxApp, setNxApp] = useState();
@@ -63,7 +64,7 @@ const NextContainer: React.FC<NextContainerProps> = ({
     nxTopologyApp.attach(tempApp); // Display the topology
 
     setNxBindings(true, nxTopologyApp);
-    
+
     if (callback) {
       callback(nxTopologyApp);
     }
@@ -80,7 +81,7 @@ const NextContainer: React.FC<NextContainerProps> = ({
         }
         onLoad={initializeNxLibrary}
       />
-      <div id="nxContainer" />
+      <div id="nxContainer" style={style} />
     </>
   );
 };
