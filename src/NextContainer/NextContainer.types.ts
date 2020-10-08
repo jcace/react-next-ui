@@ -28,6 +28,7 @@ export interface NextContainerProps {
 }
 
 export type TopologyConfig = Partial<{
+  // Properties
   adaptive: boolean;
   autoLayout: boolean;
   currentSceneName: string;
@@ -58,6 +59,9 @@ export type TopologyConfig = Partial<{
   viewSettingPanel: any;
   nodeConfig: object;
   linkConfig: object;
+
+  // Methods
+  adaptToContainer: () => void;
 }>;
 
 export interface EventHandlers
