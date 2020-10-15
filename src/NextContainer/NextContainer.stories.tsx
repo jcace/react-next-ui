@@ -39,6 +39,11 @@ export const WithEventHandlers = () => {
     },
     selectNode: (sender, event) =>
       alert(`You clicked a node with id ${event.id()}`),
+
+    topologyGenerated: (sender) => {
+      sender.eachNode((node) => console.log(`N ${node.id()}`));
+      sender.eachLink((link) => console.log(`L ${link.id()}`));
+    },
   };
 
   return (

@@ -62,6 +62,8 @@ export type TopologyConfig = Partial<{
 
   // Methods
   adaptToContainer: () => void;
+  eachNode: (callback: (node: TopologyNode) => void) => void;
+  eachLink: (callback: (link: TopologyLink) => void) => void;
 }>;
 
 export interface EventHandlers
@@ -77,7 +79,7 @@ type TopologyEvents = Partial<{
   insertData: TopologyEvent<any>;
   ready: TopologyEvent<any>;
   resizeStage: TopologyEvent<any>;
-  topologyGenerated: TopologyEvent<any>;
+  topologyGenerated: TopologyEvent<null, TopologyConfig>;
 }>;
 
 type StageEvents = Partial<{
