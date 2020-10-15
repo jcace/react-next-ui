@@ -20,14 +20,16 @@ export interface TopologyData {
 }
 
 export interface NextContainerProps {
-  topologyConfig?: NxTopology;
+  topologyConfig?: NxTopologyConfig;
   eventHandlers?: Object;
   topologyData?: TopologyData;
   style?: CSSProperties;
   callback?: (nxApp: any) => any;
 }
 
-export type NxTopology = Partial<{
+export type NxTopologyConfig = Partial<NxTopology>;
+
+export type NxTopology = {
   // Properties
   adaptive: boolean;
   autoLayout: boolean;
@@ -64,7 +66,7 @@ export type NxTopology = Partial<{
   adaptToContainer: () => void;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
-}>;
+};
 
 export interface EventHandlers
   extends StageEvents,
