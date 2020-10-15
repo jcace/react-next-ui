@@ -20,14 +20,14 @@ export interface TopologyData {
 }
 
 export interface NextContainerProps {
-  topologyConfig?: TopologyConfig;
+  topologyConfig?: NxTopology;
   eventHandlers?: Object;
   topologyData?: TopologyData;
   style?: CSSProperties;
   callback?: (nxApp: any) => any;
 }
 
-export type TopologyConfig = Partial<{
+export type NxTopology = Partial<{
   // Properties
   adaptive: boolean;
   autoLayout: boolean;
@@ -79,27 +79,27 @@ type TopologyEvents = Partial<{
   insertData: TopologyEvent<any>;
   ready: TopologyEvent<any>;
   resizeStage: TopologyEvent<any>;
-  topologyGenerated: TopologyEvent<null, TopologyConfig>;
+  topologyGenerated: TopologyEvent<null, NxTopology>;
 }>;
 
 type StageEvents = Partial<{
   clickStage: TopologyEvent<any>;
-  down: TopologyEvent<any>;
+  down: TopologyEvent<KeyboardEvent>;
   dragStage: TopologyEvent<any>;
   dragStageStart: TopologyEvent<any>;
   dragStageEnd: TopologyEvent<any>;
-  enter: TopologyEvent<any>;
-  esc: TopologyEvent<any>;
-  left: TopologyEvent<any>;
-  right: TopologyEvent<any>;
-  pressA: TopologyEvent<any>;
-  pressF: TopologyEvent<any>;
-  pressM: TopologyEvent<any>;
-  pressR: TopologyEvent<any>;
-  pressS: TopologyEvent<any>;
+  enter: TopologyEvent<KeyboardEvent>;
+  esc: TopologyEvent<KeyboardEvent>;
+  left: TopologyEvent<KeyboardEvent>;
+  right: TopologyEvent<KeyboardEvent>;
+  pressA: TopologyEvent<KeyboardEvent>;
+  pressF: TopologyEvent<KeyboardEvent>;
+  pressM: TopologyEvent<KeyboardEvent>;
+  pressR: TopologyEvent<KeyboardEvent>;
+  pressS: TopologyEvent<KeyboardEvent>;
   pressStage: TopologyEvent<any>;
-  space: TopologyEvent<any>;
-  up: TopologyEvent<any>;
+  space: TopologyEvent<KeyboardEvent>;
+  up: TopologyEvent<KeyboardEvent>;
   zoomend: TopologyEvent<any>;
   zooming: TopologyEvent<any>;
 }>;

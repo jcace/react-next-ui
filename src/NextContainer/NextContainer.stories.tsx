@@ -1,10 +1,6 @@
 import React from "react";
 import NextContainer from "./NextContainer";
-import {
-  EventHandlers,
-  TopologyConfig,
-  TopologyData,
-} from "./NextContainer.types";
+import { EventHandlers, NxTopology, TopologyData } from "./NextContainer.types";
 
 export default {
   title: "NextContainer",
@@ -18,7 +14,7 @@ const sampleTopology: TopologyData = {
   links: [{ source: 1, target: 2 }],
 };
 
-const sampleConfig: TopologyConfig = {
+const sampleConfig: NxTopology = {
   autoLayout: true,
   adaptive: true,
   identityKey: "id",
@@ -37,9 +33,6 @@ export const WithEventHandlers = () => {
     clickLink: (sender, event) => {
       alert(`You clicked a link with id ${event.id()}`);
     },
-    selectNode: (sender, event) =>
-      alert(`You clicked a node with id ${event.id()}`),
-
     topologyGenerated: (sender) => {
       sender.eachNode((node) => console.log(`N ${node.id()}`));
       sender.eachLink((link) => console.log(`L ${link.id()}`));
