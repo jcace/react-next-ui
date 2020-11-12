@@ -41,6 +41,8 @@ export type NxTopology = {
   height: number;
   width: number;
   identityKey: string;
+  _layoutType: string;
+  linkInstanceClass: string;
   linkSetInstanceClass: string;
   nodeDraggable: object;
   nodeInstanceClass: any;
@@ -64,6 +66,7 @@ export type NxTopology = {
 
   // Methods
   adaptToContainer: () => void;
+  data: (...args: any) => any;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
 };
