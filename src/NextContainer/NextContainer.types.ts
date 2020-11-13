@@ -65,7 +65,7 @@ export type NxTopology = {
 
   // Methods
   adaptToContainer: () => void;
-  data: (...args: any) => any;
+  data: (inValue?: TopologyData | void) => void | TopologyData;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
   layoutType: (inValue?: string) => void | string;
