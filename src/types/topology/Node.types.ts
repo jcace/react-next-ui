@@ -43,8 +43,6 @@ export interface TopologyAbstractNode extends TopologyComponent {
 
 export interface TopologyNode extends TopologyAbstractNode {
   // Properties
-  role: number;
-  type: string;
   label: (inValue?: string) => void | string;
   iconType: (inValue?: string) => void | boolean;
   showIcon: (inValue: boolean) => void;
