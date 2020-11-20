@@ -66,6 +66,11 @@ export type NxTopology = {
   adaptToContainer: () => void;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
+  getData: () => TopologyData;
+  layoutType: (inValue?: string) => void | string;
+  linkInstanceClass: (inValue? : string) => void | string;
+  setData: (data: TopologyData) => void;
+  stageScale: (inValue?: any) => void | number;
 };
 
 export interface EventHandlers
