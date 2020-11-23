@@ -1,6 +1,7 @@
 import { TopologyLink } from "./Link.types";
 import { TopologyComponent } from "./Component.types";
 import { GeometryVector } from "../geometry/Vector.types";
+import { TopologyEvent } from "../Common.types";
 
 export interface TopologyAbstractNode extends TopologyComponent {
   // Properties
@@ -23,6 +24,7 @@ export interface TopologyAbstractNode extends TopologyComponent {
   connectedNodes: () => any; // TODO
 
   // Methods
+  on: (type: string, event: TopologyEvent<any>) => void
   init: (args?: any) => void;
   setModel: (model?: any) => void;
   update: () => any;

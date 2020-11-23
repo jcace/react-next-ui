@@ -70,6 +70,7 @@ export type NxTopology = {
   layoutType: (inValue?: string) => void | string;
   linkInstanceClass: (inValue? : string) => void | string;
   setData: (data: TopologyData) => void;
+  stageScale: (inValue?: any) => void | number;
 };
 
 export interface EventHandlers
