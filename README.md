@@ -37,6 +37,7 @@ In your JSX, render the component as follows:
 
 `style`: CSS styles to be passed to the NeXT div (useful for specifying dimensions of the container)
 
+`afterDraw`: Function to invoke every time the NeXT diagram is re-drawn
 
 ## Examples
 

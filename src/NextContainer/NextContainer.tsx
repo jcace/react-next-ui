@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Script from "react-load-script";
-import { NextContainerProps, NxTopology } from "./NextContainer.types";
+import {
+  NextContainerProps,
+  NxTopology,
+  TopologyData,
+} from "./NextContainer.types";
+import equal from "fast-deep-equal";
+import cloneDeep from "clone-deep";
 import "../css/next.min.css";
 
 const NextContainer: React.FC<NextContainerProps> = ({
@@ -9,9 +15,11 @@ const NextContainer: React.FC<NextContainerProps> = ({
   topologyData,
   style,
   callback,
+  afterDraw,
 }) => {
   const [nxApp, setNxApp] = useState();
   const [nxLoaded, setNxLoaded] = useState(false);
+  const [previousTopology, setPreviousTopology] = useState({});
   // @ts-ignore
   const nxAppLoaded = nxApp && nxLoaded && window.nx;
 
@@ -39,13 +47,30 @@ const NextContainer: React.FC<NextContainerProps> = ({
     if (!nxAppLoaded) {
       return;
     }
+
+    // Copying the topologyData is very important, as the NeXT library will mutate it
+    // as soon as we call nxApp.data(), it will have x,y coords appended.
+    // By copying it before every comparison, we prevent this behavior.
+    const topologyCopy: TopologyData = cloneDeep(topologyData);
+
+    if (equal(previousTopology, topologyCopy)) {
+      // Prevent re-drawing the diagram if the topology has not changed
+      return;
+    }
+
     // @ts-ignore
-    nxApp!.data(topologyData)!;
+    nxApp!.data(); // We must clear the data first otherwise it won't draw. For some reason, .clear() ignores the window sizing.
+    // @ts-ignore
+    nxApp!.data(cloneDeep(topologyCopy))!;
+    setPreviousTopology(cloneDeep(topologyCopy));
+
+    // Call the user's afterDraw callback
+    afterDraw();
   }, [nxLoaded, nxApp, topologyData]);
 
   // Everytime a new render happens, make sure we update event handlers otherwise NEXT won't know that their state changed
   // This is because when event handlers are bound, they store all their variables in their closures. Updating the state won't change them, unless
-  // we remound them.
+  // we remount them.
   useEffect(() => {
     if (!nxAppLoaded) {
       return;
@@ -86,4 +111,4 @@ const NextContainer: React.FC<NextContainerProps> = ({
   );
 };
 
-export default NextContainer;
+export default React.memo(NextContainer);

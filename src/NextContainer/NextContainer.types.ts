@@ -25,6 +25,7 @@ export interface NextContainerProps {
   topologyData?: TopologyData;
   style?: CSSProperties;
   callback?: (nxApp: any) => any;
+  afterDraw?: () => void;
 }
 
 export type NxTopologyConfig = Partial<NxTopology>;
@@ -68,7 +69,7 @@ export type NxTopology = {
   eachLink: (callback: (link: TopologyLink) => void) => void;
   getData: () => TopologyData;
   layoutType: (inValue?: string) => void | string;
-  linkInstanceClass: (inValue? : string) => void | string;
+  linkInstanceClass: (inValue?: string) => void | string;
   setData: (data: TopologyData) => void;
   stageScale: (inValue?: any) => void | number;
 };
