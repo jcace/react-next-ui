@@ -65,7 +65,9 @@ const NextContainer: React.FC<NextContainerProps> = ({
     setPreviousTopology(cloneDeep(topologyCopy));
 
     // Call the user's afterDraw callback
-    afterDraw();
+    if (afterDraw) {
+      afterDraw();
+    }
   }, [nxLoaded, nxApp, topologyData]);
 
   // Everytime a new render happens, make sure we update event handlers otherwise NEXT won't know that their state changed
