@@ -64,6 +64,7 @@ export type NxTopology = {
   linkConfig: object;
 
   // Methods
+  addNodeSet: (nodeSet: TopologyNode) => TopologyNode;
   adaptToContainer: () => void;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
