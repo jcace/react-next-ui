@@ -23,6 +23,7 @@ const NextContainer: React.FC<NextContainerProps> = ({
   // @ts-ignore
   const nxAppLoaded = nxApp && nxLoaded && window.nx;
 
+  console.log("Running in dev");
   const setNxBindings = (isNxLoaded, newNxApp) => {
     setNxLoaded(isNxLoaded);
     setNxApp(newNxApp);
