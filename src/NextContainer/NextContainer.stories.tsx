@@ -153,12 +153,6 @@ export const WithHook = () => {
     nxApp.tooltipManager().tooltipPolicyClass("testTooltipPolicy");
   };
 
-  // const { NextUI, insertData, eachNode, setData, getData } = useNext({
-  //   topologyData: vTopology,
-  //   topologyConfig: sampleConfig,
-  //   eventHandlers: sampleEvtHandlers,
-  //   callback: afterLoad,
-  // });
   const { NextUI, nxApp } = useNext({
     topologyData: vTopology,
     topologyConfig: sampleConfig,
@@ -168,19 +162,19 @@ export const WithHook = () => {
 
   useEffect(() => {
     const existingTopology = nxApp?.getData();
-    // console.log("Existing topology");
-    // console.log(existingTopology);
+    console.log("Existing topology");
+    console.log(existingTopology);
 
-    // console.log("New Topology");
-    // console.log(topology);
+    console.log("New Topology");
+    console.log(topology);
 
-    // console.log("Equal?");
-    // console.log(equal(existingTopology, topology));
+    console.log("Equal?");
+    console.log(equal(existingTopology, topology));
 
     if (!equal(existingTopology, topology)) {
       setVTopology(topology);
     }
-  });
+  }, [topology]);
 
   let i = 1;
   const clickHandlerAddNode = () => {

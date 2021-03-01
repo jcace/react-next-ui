@@ -1,4 +1,4 @@
-import { TopologyEvent } from "../types/Common.types";
+import { NxId, TopologyEvent } from "../types/Common.types";
 import { TopologyNode } from "../types/topology/Node.types";
 import { TopologyLink } from "../types/topology/Link.types";
 import { CSSProperties } from "react";
@@ -9,12 +9,12 @@ import { CSSProperties } from "react";
 
 export interface TopologyData {
   nodes: Array<{
-    id: string | number;
+    id: NxId;
     [x: string]: any;
   }>;
   links: Array<{
-    source: string | number;
-    target: string | number;
+    source: NxId;
+    target: NxId;
     [x: string]: any;
   }>;
 }
@@ -65,15 +65,28 @@ export type NxTopology = {
 
   // Methods
   addNodeSet: (nodeSet: TopologyNode) => TopologyNode;
+  addNode: (node: TopologyNode) => void;
+  addLink: (node: TopologyLink) => void;
   adaptToContainer: () => void;
   eachNode: (callback: (node: TopologyNode) => void) => void;
   eachLink: (callback: (link: TopologyLink) => void) => void;
+  getNode: (id: NxId) => TopologyNode;
+  getLink: (id: NxId) => TopologyLink;
   getData: () => TopologyData;
   layoutType: (inValue?: string) => void | string;
   linkInstanceClass: (inValue?: string) => void | string;
   setData: (data: TopologyData) => void;
   insertData: (data: TopologyData) => void;
   stageScale: (inValue?: any) => void | number;
+  removeNode: (nodeId: NxId | TopologyNode) => void;
+  removeLink: (linkId: NxId | TopologyLink) => void;
+  zoom: (value: number) => void;
+  zoomByNodes: (nodes: TopologyNode[], callback?: any, context?: any) => void;
+  resize: (width: number, height: number) => void;
+  move: (x: number, y: number, duration?: number) => void;
+  fit: () => void;
+  clear: () => void;
+  adjustLayout: () => void;
 };
 
 export interface EventHandlers

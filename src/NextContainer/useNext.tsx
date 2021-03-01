@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import Script from "react-load-script";
 import {
   NextContainerProps,
@@ -9,6 +9,11 @@ import equal from "fast-deep-equal";
 import cloneDeep from "clone-deep";
 import "../css/next.min.css";
 
+/**
+ * NeXT UI React Hook
+ * @param param0
+ * @returns {NextUI,nxApp} NextUI component to render, and nxApp for interaction with it
+ */
 const useNextUi = ({
   topologyConfig,
   eventHandlers,
@@ -17,18 +22,37 @@ const useNextUi = ({
   callback,
 }: NextContainerProps) => {
   const [nxApp, setNxApp] = useState();
+
   useEffect(() => {
     if (!nxApp) return;
-
-    console.log(nxApp);
-
-    nxApp.setData(topologyData);
+    // @ts-ignore
+    nxApp.setData(cloneDeep(topologyData));
     mountEventHandlers();
-  }, [topologyData]);
+  }, [topologyData, nxApp]);
+
+  useEffect(() => {
+    if (!nxApp) return;
+    mountEventHandlers();
+  }, [eventHandlers]);
+
+  // useEffect(() => {
+  //   if (!nxApp) return;
+  //   console.log("Resetting topologyConfig to");
+  //   console.log(topologyConfig);
+  //   // @ts-ignore
+  //   nxApp!.nodeConfig(topologyConfig.nodeConfig);
+  //   // @ts-ignore
+  //   nxApp!.linkConfig(topologyConfig.linkConfig);
+  // });
 
   const mountEventHandlers = () => {
+    // console.log("Called mountEvtHandlers but");
+    // console.log(Boolean(nxApp));
+    // console.log(Boolean(eventHandlers));
     if (!nxApp || !eventHandlers) return;
-    console.log("Mounting event handlers 4 reals");
+
+    // console.log("Mounted event handlers");
+    // console.log(eventHandlers);
 
     Object.entries(eventHandlers).forEach(([event, eventHandler]) => {
       // @ts-ignore
@@ -46,13 +70,9 @@ const useNextUi = ({
     // @ts-ignore
     const nxTopologyApp = new window.nx.graphic.Topology(topologyConfig);
 
-    nxTopologyApp.attach(tempApp); // Display the topology
+    nxTopologyApp.attach(tempApp); // Attach topology to div and display
     nxTopologyApp.data(topologyData);
-    // nxApp = nxTopologyApp;
     setNxApp(nxTopologyApp);
-    // console.log("Set nxApp");
-    // console.log(nxApp);
-
     mountEventHandlers();
 
     if (callback) {
@@ -66,7 +86,10 @@ const useNextUi = ({
   };
 };
 
-class NextUI extends React.Component {
+class NextUI extends React.Component<
+  { style: CSSProperties; init: () => void },
+  {}
+> {
   shouldComponentUpdate(nextProps) {
     if (nextProps.style !== this.props.style) return true;
 
