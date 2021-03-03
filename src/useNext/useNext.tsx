@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { NextContainerProps } from "./NextTypes";
+import { NextContainerProps, NxTopology } from "./NextTypes";
 import cloneDeep from "clone-deep";
 import "../css/next.min.css";
 import NextUI from "./NextUI";
 
+// Define 'nx' on the window object so window.nx... calls don't give type errors
+declare global {
+  interface Window {
+    nx: any;
+  }
+}
+
 /**
  * NeXT UI React Hook
- * @param param0
- * @returns {NextUI,nxApp} NextUI component to render, and nxApp for interaction with it
+ * @param {topologyConfig, eventHandlers, topologyData, style, callback}
+ * @returns { NextUI, nxApp } NextUI: component to render. Use {} syntax ie <>{NextUI}</>. nxApp:
  */
 const useNextUi = ({
   topologyConfig,
@@ -16,15 +23,21 @@ const useNextUi = ({
   style,
   callback,
 }: NextContainerProps) => {
-  const [nxApp, setNxApp] = useState();
+  const [nxApp, setNxApp] = useState<NxTopology>();
 
+  /**
+   * Set topology data whenever it changes, or if nxApp is re-loaded for some reason.
+   */
   useEffect(() => {
     if (!nxApp) return;
-    // @ts-ignore
+
     nxApp.setData(cloneDeep(topologyData));
     mountEventHandlers();
   }, [topologyData, nxApp]);
 
+  /**
+   * Ensure eventHandlers are kept up to date if they change or their closure variables change
+   */
   useEffect(() => {
     if (!nxApp) return;
     mountEventHandlers();
@@ -34,23 +47,22 @@ const useNextUi = ({
     if (!nxApp || !eventHandlers) return;
 
     Object.entries(eventHandlers).forEach(([event, eventHandler]) => {
-      // @ts-ignore
-      nxApp!.off(event); // We need to remove all event handlers first, because ".on" adds a NEW one, it doesn't REPLACE an existing one.
-      // @ts-ignore
-      nxApp!.on(event, eventHandler)!;
+      nxApp.off(event); // We need to remove all event handlers first, because ".on" adds a NEW one, it doesn't REPLACE an existing one.
+      nxApp.on(event, eventHandler)!;
     });
   };
 
   const initializeNxLibrary = () => {
-    // @ts-ignore
     const tempApp = new window.nx.ui.Application();
     tempApp.container(document.getElementById("nxContainer"));
 
-    // @ts-ignore
+    // Instantiate a new nx Topology
     const nxTopologyApp = new window.nx.graphic.Topology(topologyConfig);
 
     nxTopologyApp.attach(tempApp); // Attach topology to div and display
-    nxTopologyApp.data(topologyData);
+    nxTopologyApp.data(topologyData); // Set the initial topology data
+
+    // Save the instance into state
     setNxApp(nxTopologyApp);
     mountEventHandlers();
 

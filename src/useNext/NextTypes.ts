@@ -87,6 +87,8 @@ export type NxTopology = {
   fit: () => void;
   clear: () => void;
   adjustLayout: () => void;
+  off: (evt: string) => void;
+  on: (evt: string, handler: TopologyEvent<any>) => void;
 };
 
 export interface EventHandlers

@@ -99,11 +99,11 @@ export const withNxAppUsed = () => {
 
   let i = 1;
   const clickHandlerAddNode = () => {
-    nxApp?.insertData({ nodes: [{ id: 50 * i++ }] });
+    nxApp.insertData({ nodes: [{ id: 50 * i++ }] });
   };
 
   const clickHandlerAddLink = () => {
-    nxApp?.insertData({ links: [{ source: 1, target: 2 }] });
+    nxApp.insertData({ links: [{ source: 1, target: 2 }] });
   };
 
   const clickHandlerNewTopology = () => {
