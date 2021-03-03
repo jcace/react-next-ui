@@ -1,4 +1,4 @@
-import { NxTopology } from "../NextContainer/NextContainer.types";
+import { NxTopology } from "../useNext/NextTypes";
 
 export type Coordinates = { x: number; y: number };
 

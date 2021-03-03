@@ -1,6 +1,6 @@
 import { TopologyComponent } from "./Component.types";
 import { TopologyNode } from "./Node.types";
-import { Coordinates } from "../Common.types";
+import { Coordinates, NxId } from "../Common.types";
 
 export interface TopologyAbstractLink extends TopologyComponent {
   // Properties
@@ -19,7 +19,7 @@ export interface TopologyAbstractLink extends TopologyComponent {
   position: () => { x1: number; x2: number; y1: number; y2: number };
   line: () => any; // TODO: line
   topology: () => any;
-  id: () => number | string;
+  id: () => NxId | NxId;
   linkKey: () => any;
   reverse: () => any;
   centerPoint: () => any;

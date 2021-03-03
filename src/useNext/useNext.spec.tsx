@@ -1,9 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import NextContainer from "./NextContainer";
-import { NextContainerProps } from "./NextContainer.types";
-
 // describe("Test Component", () => {
 //   let props: NextContainerProps;
 
