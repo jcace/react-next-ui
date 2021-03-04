@@ -26,14 +26,14 @@ import "react-next-ui/build/css/next.min.css";
 
 The NeXT library is exposed as a React Hook. Use it in your functional component to set up the library:
 ```tsx
-    const { NextUI, nxApp } = useNext({ props  });
+    const { NextUI, nxApp } = useNext({ props });
 ```
 #### Props
 `topologyData`: The Topology Data to render, in the form {nodes:[], links:[]}. Any time this changes, the `NextUI` component will rerender.
 
 `topologyConfig`: Configuration to apply to the Next container. See Typescript types and [Cisco DevNet Docs](https://developer.cisco.com/site/neXt/document/api-reference-manual/classes/nx.graphic.Topology/) for more information. 
 
-`eventHandlers`: Object with event handlers for various actions. See [NextContainer Types](src/NextContainer/NextContainer.types.ts). It it is possible to attach event handlers manually, directly on `nxApp`, however when passed into the `useNext` hook there is an internal `useEffect` to ensure they stay up to date.
+`eventHandlers`: Object with event handlers for various actions. See [NextContainer Types](src/NextContainer/NextContainer.types.ts). It is possible to attach event handlers manually, directly on `nxApp`, however when passed into the `useNext` hook there is an internal `useEffect` to ensure they stay up to date.
 
 `callback`: Function to execute once Next container is finished loading/mounting. Called with one argument equal to the instance of `nx.graphic.Topology` that was instantiated. Note that this is only called once in the component lifecycle (on first mount). It is not called when data changes. 
 
