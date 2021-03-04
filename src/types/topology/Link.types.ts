@@ -19,7 +19,7 @@ export interface TopologyAbstractLink extends TopologyComponent {
   position: () => { x1: number; x2: number; y1: number; y2: number };
   line: () => any; // TODO: line
   topology: () => any;
-  id: () => NxId | NxId;
+  id: (() => NxId) | NxId;
   linkKey: () => any;
   reverse: () => any;
   centerPoint: () => any;

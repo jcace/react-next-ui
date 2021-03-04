@@ -15,7 +15,7 @@ export interface TopologyAbstractNode extends TopologyComponent {
   lockYAxle: () => boolean;
   stageScale: (value: number) => any;
   topology: () => any; // TODO: Topology type
-  id: () => NxId | NxId;
+  id: (() => NxId) | NxId;
   enable: (inValue?: boolean) => void | boolean;
   node: () => TopologyNode;
   showIcon: (inValue?: boolean) => void | boolean;
